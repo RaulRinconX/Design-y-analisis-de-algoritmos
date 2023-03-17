@@ -5,25 +5,25 @@ public class Parte1 {
 
     public static final int INF = Integer.MAX_VALUE;
     /// Función para leer la matriz de costos desde un archivo de texto ///
-    public static int[][] readMatriz(String filename) {
-        int[][] matrix = null;
+    public static int[][] leerMatriz(String filename) {
+        int[][] matriz = null;
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             int i = 0;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.trim().split("\\s+");
-                if (matrix == null) {
-                    matrix = new int[parts.length][parts.length];
+                if (matriz == null) {
+                    matriz = new int[parts.length][parts.length];
                 }
                 for (int j = 0; j < parts.length; j++) {
-                    matrix[i][j] = Integer.parseInt(parts[j]);
+                    matriz[i][j] = Integer.parseInt(parts[j]);
                 }
                 i++;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return matrix;
+        return matriz;
     }
     /////////// FLOYD-WARSHALL //////////////
     public static int[][] floydWarshall(int[][] matriz) {
@@ -49,7 +49,7 @@ public class Parte1 {
         return dist;
     }
 
-    ////// DIJKSTRA //////////////
+    ///////////  DIJKSTRA  //////////////
     public static int[] dijkstra(int[][] grafo, int fuente) {
         int n = grafo.length;
         boolean[] visitados = new boolean[n];
@@ -75,32 +75,32 @@ public class Parte1 {
         }
         return distancia;
     }
-    ////////// BELLMANFORD ///////////////
+    /////////// BELLMANFORD //////////////
     public int[][] bellmanFordComplete(String rutaArchivo) throws IOException 
     {
-        int[][] matrix = readMatriz(rutaArchivo);
-        int[][] resultado = new int[matrix.length][];
+        int[][] matriz = leerMatriz(rutaArchivo);
+        int[][] resultado = new int[matriz.length][];
 
-        for (int i = 0; i < matrix.length; i++) {
-            resultado[i] = bellmanFord(matrix, i);
+        for (int i = 0; i < matriz.length; i++) {
+            resultado[i] = bellmanFord(matriz, i);
         }
 
         return resultado;
     }
 
-    private static int[] bellmanFord(int[][] matrix, int start) 
+    private static int[] bellmanFord(int[][] matriz, int start) 
     {
-        int[] memory = new int[matrix.length];
+        int[] memory = new int[matriz.length];
         Arrays.fill(memory, Integer.MAX_VALUE);
         memory[start] = 0;
 
-        for (int i = 0; i < matrix.length - 1; i++) 
+        for (int i = 0; i < matriz.length - 1; i++) 
         {
-            for (int u = 0; u < matrix.length; u++) 
+            for (int u = 0; u < matriz.length; u++) 
             {
-                for (int v = 0; v < matrix[0].length; v++) 
+                for (int v = 0; v < matriz[0].length; v++) 
                 {
-                    int peso = matrix[u][v];
+                    int peso = matriz[u][v];
                     if (peso != 0 && memory[u] != Integer.MAX_VALUE && memory[u] + peso < memory[v]) 
                     {
                         memory[v] = memory[u] + peso;
@@ -112,15 +112,15 @@ public class Parte1 {
         return memory;
     }
 
-    /////////////// PRINT MATRIX /////////////////
-    public static void printMatrix(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            System.out.println(Arrays.toString(matrix[i]).replaceAll("\\[|\\]|,", ""));
+    /////////////// PRINT MATRIZ /////////////////
+    public static void printMatrix(int[][] matriz) {
+        for (int i = 0; i < matriz.length; i++) {
+            System.out.println(Arrays.toString(matriz[i]).replaceAll("\\[|\\]|,", ""));
         }
     }
     /////////////// MAIN /////////////////
     public static void main(String[] args) {
-        int[][] matriz = readMatriz("C:\\Users\\User\\OneDrive - Universidad de los Andes\\Escritorio\\DALGO\\TAREA4\\data\\distances5.txt");
+        int[][] matriz = leerMatriz("data\\"+args[0]);
         System.out.println("Matriz de costos:");
         printMatrix(matriz);
         // Floyd-Warshall

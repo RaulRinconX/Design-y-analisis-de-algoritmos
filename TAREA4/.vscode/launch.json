@@ -9,34 +9,22 @@
             "name": "Parte3",
             "request": "launch",
             "mainClass": "Parte3",
-            "projectName": "TAREA4_8a1891bc"
+            "projectName": "TAREA4_faebb45d"
         },
         {
             "type": "java",
             "name": "Parte2",
             "request": "launch",
             "mainClass": "Parte2",
-            "projectName": "TAREA4_8a1891bc"
+            "projectName": "TAREA4_faebb45d"
         },
         {
             "type": "java",
             "name": "Parte1",
             "request": "launch",
             "mainClass": "Parte1",
-            "projectName": "TAREA4_8a1891bc"
-        },
-        {
-            "type": "java",
-            "name": "Current File",
-            "request": "launch",
-            "mainClass": "${file}"
-        },
-        {
-            "type": "java",
-            "name": "Dijkstra",
-            "request": "launch",
-            "mainClass": "Dijkstra",
-            "projectName": "TAREA4_8a1891bc"
+            "projectName": "TAREA4_faebb45d",
+            "args": "distances5.txt"
         }
     ]
 }
