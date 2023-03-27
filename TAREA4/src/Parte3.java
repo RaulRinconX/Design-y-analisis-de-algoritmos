@@ -1,7 +1,30 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Stack;
 
 public class Parte3 {
-
+    
+    public static int[][] leerMatriz(String filename) {
+        int[][] matriz = null;
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            int i = 0;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.trim().split("\\s+");
+                if (matriz == null) {
+                    matriz = new int[parts.length][parts.length];
+                }
+                for (int j = 0; j < parts.length; j++) {
+                    matriz[i][j] = Integer.parseInt(parts[j]);
+                }
+                i++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return matriz;
+    }
     private static boolean dfs(int[][] grafo, boolean[] visitado, int verticeActual) {
         Stack<Integer> pila = new Stack<>();
         pila.push(verticeActual);
@@ -40,18 +63,16 @@ public class Parte3 {
     }
 
     public static void main(String[] args) {
-        int[][] grafo = {
-            {0, 90, 80, -1, -1},
-            {15, 0, 69, 48, -1},
-            {91, -1, 0, 12, 39},
-            {78, -1, -1, 0, 36},
-            {26, 12, 39, 33, 0}
-        };
-
-        if (tieneCiclo(grafo)) {
+      
+        int[][] matriz = leerMatriz("data\\"+args[0]);
+        long startTime = System.nanoTime();
+        if (tieneCiclo(matriz)) {
             System.out.println("\n El grafo tiene al menos un ciclo.\n");
         } else {
-            System.out.println("El grafo no tiene ciclos.");
+            System.out.println("\n El grafo no tiene ciclos.\n ");
         }
+        long endTime = System.nanoTime();
+        Double totalTime = (endTime - startTime)/1_000_000_000.0;
+        System.out.println("\nTiempo total de ejecucion en segundos para DFS: " + totalTime);
     }
 }
