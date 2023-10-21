@@ -1,2 +1,2 @@
 # DALGO
-workspace for dalgo
+Repositorio personal con soluciones algoritmicas y aproximaciones con Grafos, Programacion dinamica y problemas NP completos. 
