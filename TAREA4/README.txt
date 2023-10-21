@@ -7,8 +7,10 @@ INTEGRANTES:
 -- COMO EJECUTAR LA TAREA --
 
 Dentro del zip podra encontrar la carpeta src (source) donde encontrara respectivamente
-un archivo para cada parte de la tarea las cuales contienen un metodo main para ejecutar por separado
-cada requerimiento solicitado.
+un archivo para cada parte de la tarea las cuales contienen un metodo main para ejecutar por separado cada requerimiento solicitado.
+
+LAS ENTRADAS SON LOS ARCHIVOS TXT CON LAS MATRICES.
+LAS SALIDAS ESPERADAS DEPENDEN DEL ALGORITMO.
 
 1. En la barra de opciones superior de eclipse, en el boton verde, seleccionar Run Configurations... 
 
